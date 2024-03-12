@@ -2,4 +2,4 @@ openai == 0.28
 python-dotenv
 streamlit
 OpenAI
-openai --upgrade
+pip install openai --upgrade
