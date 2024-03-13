@@ -1,13 +1,18 @@
 import streamlit as st
 import openai
-from openai import OpenAI
 
-def gpt_function(api_key, hr_policy, sector, country, query):
+
+def get_openai_client(api_key, endpoint):
+    openai.api_type = 'azure'
+    openai.api_key = api_key
+    openai.api_version = '2023-12-01-preview'
+    openai.api_base = endpoint
+    return openai
+
+def gpt_function(client, hr_policy, sector, country, query):
     """
     Function to call the GPT API and return a response.
     """
-    client = OpenAI(api_key=api_key)
-    
     user_content = f"""
     Company Policy: {hr_policy}
     Sector: {sector}
@@ -37,9 +42,9 @@ def gpt_function(api_key, hr_policy, sector, country, query):
         {"role": "user", "content": f"{user_content}"}
     ]
 
-    response = client.chat.completions.create(
+    response = client.ChatCompletion.create(
         messages=conversation,
-        model="gpt-3.5-turbo",
+        engine="gpt-35-turbo",
     )
     text_response = response.choices[0].message.content
     return text_response
@@ -50,16 +55,20 @@ def main():
     """
     st.title("Avado Policy Checker")
 
-    api_key = st.text_input("Enter your OpenAI API key:", type="password")
+    st.sidebar.title("Azure OpenAI API Key and Endpoint")
+    openai_api_key = st.sidebar.text_input("Enter your Azure OpenAI API Key", type="password")
+    openai_endpoint = 'https://bc-api-management-uksouth.azure-api.net'
+    client = get_openai_client(openai_api_key, openai_endpoint)
+
     hr_policy = st.text_input("Company HR Policy:")
     sector = st.text_input("Company Sector:")
     country = st.text_input("Country:")
     query = st.text_input("Question:")
 
-    if api_key and hr_policy and sector and country:
+    if hr_policy and sector and country and openai_api_key and openai_endpoint:
         if st.button("Submit"):
             with st.spinner("Fetching the answer..."):
-                output = gpt_function(api_key, hr_policy, sector, country, query)
+                output = gpt_function(client, hr_policy, sector, country, query)
                 st.write(output)
 
 if __name__ == "__main__":
