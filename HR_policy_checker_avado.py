@@ -59,7 +59,7 @@ def main():
     """
     st.title("Avado Policy Checker")
 
-        description = """
+    description = """
     #### About the App
     ###### Review your HR policy against the latest industry best practices.
     """
