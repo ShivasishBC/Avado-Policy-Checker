@@ -10,34 +10,38 @@ def get_openai_client(api_key, endpoint):
     return openai
 
 def gpt_function(client, hr_policy, sector, country, query):
+   
     """
     Function to call the GPT API and return a response.
     """
     user_content = f"""
-    Company Policy: {hr_policy}
-    Sector: {sector}
-    Country: {country}
+    Company Policy: {hr_policy} #The policy of the company, which will be used to check alignment with legal standards and best practices try understand each and every context of policy provided to you.
+    Sector: {sector}  # The sector in which the company operates.
+    Country: {country}  # The country where the company is located.
+    
+    Use the provided company policy, sector, and country information to ensure alignment with legal standards and best practices.
+    Provide a detailed response to the user's question, considering the specific policies of <Company Name>.
+
     
     Answer the question below as a Policy checker for <Company name> 
-    Question: "{query}"
+    Question: "{query}"  # The question asked by the user for the policy checker.
 """
 
     conversation = [
         {"role": "system", "content": """You are a Policy checker bot 
                         
-                        Few details about the <Company name>, employees who stays within 50 miles of radius of the office has to work from office, others can leverage the WFH.
-                        If a women has to work after 8PM she will be given cab service to her home.
-                        If you are working on holiday's then 1 compensation leave and a bonus money will be added in your salary at the month end.
+                        Few details about the <Company name>, employees who stay within 50 miles radius of the office have to work from the office; others can leverage WFH.
+                        If a woman has to work after 8 PM, she will be given cab service to her home.
+                        If you are working on holidays, then 1 compensation leave and a bonus will be added to your salary at the end of the month.
                                     
-                        You will be give following things
-                            - company policy: policy , rules and regulations of the company
-                            - company sector: Company's working sector
+                        You will be given the following information:
+                            - Company policy: policy, rules, and regulations of the company
+                            - Company sector: Company's working sector
                             - Country: Where the company is located
-                            
                             
                         Do the following:
                             - Report highlighting alignment with legal standards and best practices
-                            - Answer the question that user asks
+                            - Answer the question that the user asks
                                     """},
         {"role": "user", "content": f"{user_content}"}
     ]
@@ -60,7 +64,7 @@ def main():
     openai_endpoint = 'https://bc-api-management-uksouth.azure-api.net'
     client = get_openai_client(openai_api_key, openai_endpoint)
 
-    hr_policy = st.text_input("Company HR Policy:")
+    hr_policy = st.text_area("Company HR Policy:")
     sector = st.text_input("Company Sector:")
     country = st.text_input("Country:")
     query = st.text_input("Question:")
