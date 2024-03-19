@@ -59,6 +59,13 @@ def main():
     """
     st.title("Avado Policy Checker")
 
+        description = """
+    #### About the App
+    ###### Review your HR policy against the latest industry best practices.
+    """
+
+    st.markdown(description , unsafe_allow_html=True)
+
     st.sidebar.title("Azure OpenAI API Key")
     openai_api_key = st.sidebar.text_input("Enter your Azure OpenAI API Key", type="password")
     openai_endpoint = 'https://bc-api-management-uksouth.azure-api.net'
