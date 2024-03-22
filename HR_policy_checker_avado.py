@@ -22,13 +22,14 @@ def gpt_function(client, hr_policy, sector, country):
 """
 
     conversation = [
-        {"role": "system", "content": """You are a Policy Proofer bot 
+        {"role": "system", "content": """
+                      You are a Policy Proofer bot 
                         
                         Few details about the <Company name>, employees who stay within 50 miles radius of the office have to work from the office; others can leverage WFH.
                         If a woman has to work after 8 PM, she will be given cab service to her home.
                         If you are working on holidays, then 1 compensation leave and a bonus will be added to your salary at the end of the month.
     
-                        You will be given the following information with proper format and subheadings including 
+                    - You will be given the following information with proper format and subheadings including 
                                 1. Company Sector (Sector) -  Country Located (Country)
                                 2. ### Summary of region specific best practices 
                                 3. ### How Your HR Policy compares 
