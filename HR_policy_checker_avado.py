@@ -69,7 +69,7 @@ def main():
     ('India', 'UK', 'Australia', 'USA', 'Canada', 'Germany', 'France'))
     if hr_policy and sector and country and openai_api_key and openai_endpoint:
         if st.button("Submit"):
-            with st.spinner("Generating report..."):
+            with st.spinner("Saving you time..."):
                 output = gpt_function(client, hr_policy, sector, country)
                 st.write(output)
 
