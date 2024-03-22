@@ -18,17 +18,17 @@ def gpt_function(client, hr_policy, sector, country):
     Country: {country}
     
     Use the provided company policy, sector, and country information to ensure alignment with legal standards and best practices.
-    Provide a detailed report highlighting alignment with industry best practices, including a summary of region-specific best practices, alignment of your policy with regional best practices, and recommendations for greater alignment in british english.
 """
 
     conversation = [
-        {"role": "system", "content": """You are a Policy Proofer bot 
+        {"role": "system", "content": """
+                    You are a Policy Proofer bot 
                         
                         Few details about the <Company name>, employees who stay within 50 miles radius of the office have to work from the office; others can leverage WFH.
                         If a woman has to work after 8 PM, she will be given cab service to her home.
                         If you are working on holidays, then 1 compensation leave and a bonus will be added to your salary at the end of the month.
     
-                        You will be given the following information with proper format and subheadings including Company Sector (Sector) , Country Located (Country):
+                    You will be given the following information with proper format and subheadings including Company Sector (Sector) , Country Located (Country):
                             1. ### Summary of region specific best practices 
                             2. ### How Your HR Policy compares 
                             3. ### Recomandations to improve your policy
