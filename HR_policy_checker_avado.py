@@ -29,10 +29,10 @@ def gpt_function(client, hr_policy, sector, country):
                         If you are working on holidays, then 1 compensation leave and a bonus will be added to your salary at the end of the month.
     
                         You will be given the following information with proper format and subheadings including 
-                            1. Company Sector (Sector) -  Country Located (Country)
-                            2. ### Summary of region specific best practices 
-                            3. ### How Your HR Policy compares 
-                            4. ### Recomandations to improve your policy
+                                1. Company Sector (Sector) -  Country Located (Country)
+                                2. ### Summary of region specific best practices 
+                                3. ### How Your HR Policy compares 
+                                4. ### Recomandations to improve your policy
                                     """},
         {"role": "user", "content": f"{user_content}"}
     ]
