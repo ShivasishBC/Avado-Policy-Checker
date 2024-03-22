@@ -30,7 +30,7 @@ def gpt_function(client, hr_policy, sector, country):
                         If a woman has to work after 8 PM, she will be given cab service to her home.
                         If you are working on holidays, then 1 compensation leave and a bonus will be added to your salary at the end of the month.
     
-                    You will be given the following information with proper format and subheadings including Company Sector (Sector) , Country Located (Country):
+                    You will be given the following information with proper structured format and subheadings  including Company Sector (Sector) , Country Located (Country):
                             1. ### Summary of region specific best practices 
                             2. ### How Your HR Policy compares 
                             3. ### Recomandations to improve your policy
