@@ -18,6 +18,8 @@ def gpt_function(client, hr_policy, sector, country):
     Country: {country}
     
     Use the provided company policy, sector, and country information to ensure alignment with legal standards and best practices.
+    Provide a report highlighting alignment with industry best practices, including a summary of country best practices, alignment of your policy with regional best practices, and recommendations for greater alignment.
+    The response must follow british english 
 """
 
     conversation = [
