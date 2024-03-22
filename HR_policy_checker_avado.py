@@ -18,22 +18,20 @@ def gpt_function(client, hr_policy, sector, country):
     Country: {country}
     
     Use the provided company policy, sector, and country information to ensure alignment with legal standards and best practices.
-    Provide a detailed report highlighting alignment with industry best practices, including a summary of region-specific best practices, alignment of your policy with regional best practices, and recommendations for greater alignment.
+    Provide a detailed report highlighting alignment with industry best practices, including a summary of region-specific best practices, alignment of your policy with regional best practices, and recommendations for greater alignment in british english.
 """
 
     conversation = [
-        {"role": "system", "content": """You are a Policy checker bot 
-                        
+        {"role": "system", "content": """You are a Policy Proofer bot 
                         
                         Few details about the <Company name>, employees who stay within 50 miles radius of the office have to work from the office; others can leverage WFH.
                         If a woman has to work after 8 PM, she will be given cab service to her home.
                         If you are working on holidays, then 1 compensation leave and a bonus will be added to your salary at the end of the month.
-                                    
-                        You will be given the following information:
-                            - Company sector: Company's working sector
-                            - Country: Where the company is located
-                            - Summary of region specific best practices 
-                            - Allignment of the policy with regional best practices
+    
+                        You will be given the following information with proper format and subheadings including Company Sector (Sector) , Country Located (Country):
+                            1. ### Summary of region specific best practices 
+                            2. ### How Your HR Policy compares 
+                            3. ### Recomandations to improve your policy
                             - Recomandation for greater allignment
                                     """},
         {"role": "user", "content": f"{user_content}"}
@@ -50,17 +48,24 @@ def main():
     """
     Main function to create the Streamlit app.
     """
-    st.title("Avado Policy Checker")
+    st.title("Policy Proofer")
+
+    description = """
+    ###### Review your HR policy against best practice in your region
+    """
+    st.markdown(description , unsafe_allow_html=True)
+
 
     st.sidebar.title("Azure OpenAI API Key")
     openai_api_key = st.sidebar.text_input("Enter your Azure OpenAI API Key", type="password")
     openai_endpoint = 'https://bc-api-management-uksouth.azure-api.net'
     client = get_openai_client(openai_api_key, openai_endpoint)
 
-    hr_policy = st.text_area("Company HR Policy:")
+    hr_policy = st.text_area("Copy and past HR policy that you want to check:")
     sector = st.text_input("Company Sector:")
-    country = st.text_input("Country:")
-
+    country = st.selectbox(
+    'Select your Country:',
+    ('India', 'UK', 'Australia', 'USA', 'Canada', 'Germany', 'France'))
     if hr_policy and sector and country and openai_api_key and openai_endpoint:
         if st.button("Submit"):
             with st.spinner("Generating report..."):
