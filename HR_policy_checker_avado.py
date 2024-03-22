@@ -32,7 +32,7 @@ def gpt_function(client, hr_policy, sector, country):
                             1. ### Summary of region specific best practices 
                             2. ### How Your HR Policy compares 
                             3. ### Recomandations to improve your policy
-                            - Recomandation for greater allignment
+                    
                                     """},
         {"role": "user", "content": f"{user_content}"}
     ]
