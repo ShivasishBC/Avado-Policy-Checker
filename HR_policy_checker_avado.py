@@ -40,7 +40,7 @@ def gpt_function(client, hr_policy, sector, country):
     response = client.ChatCompletion.create(
         messages=conversation,
         engine="gpt-35-turbo",
-        temprature = 0
+        temperature = 0
     )
     text_response = response.choices[0].message.content
     return text_response
