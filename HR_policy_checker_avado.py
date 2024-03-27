@@ -30,7 +30,7 @@ def gpt_function(client,policy_type, hr_policy, sector, country):
                          - Use this below Headings ad markdown
                                 1. #### Summary of {policy_type}
                                 2. #### Best practices in {country}
-                                2. #### How Your HR Policy compares 
+                                2. #### How Your Policy compares 
                                 3. #### Recomandations to improve your policy
                                     """},
         {"role": "user", "content": f"{user_content}"}
