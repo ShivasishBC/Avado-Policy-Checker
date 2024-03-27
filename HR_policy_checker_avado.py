@@ -63,6 +63,8 @@ def main():
     openai_endpoint = 'https://bc-api-management-uksouth.azure-api.net'
     client = get_openai_client(openai_api_key, openai_endpoint)
 
+    
+    policy_type = st.text_input("Policy Type:")
     hr_policy = st.text_area("Copy and past HR policy that you want to check:")
     sector = st.text_input("Company Sector:")
     country = st.selectbox(
@@ -71,7 +73,7 @@ def main():
     if hr_policy and sector and country and openai_api_key and openai_endpoint:
         if st.button("Submit"):
             with st.spinner("Saving you time..."):
-                output = gpt_function(client, hr_policy, sector, country)
+                output = gpt_function(client, policy_type, hr_policy, sector, country)
                 st.write(output)
 
 if __name__ == "__main__":
