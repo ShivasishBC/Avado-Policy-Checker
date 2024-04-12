@@ -69,7 +69,7 @@ def main():
     sector = st.text_input("Company Sector:")
     country = st.selectbox(
     'Select your Country:',
-    ('India', 'UK', 'Australia', 'USA', 'Canada', 'Germany', 'France'))
+    ('UK', 'USA', 'India', 'France', 'Germany', 'Canada', 'Australia'))
     if hr_policy and sector and country and openai_api_key and openai_endpoint:
         if st.button("Submit"):
             with st.spinner("Saving you time..."):
