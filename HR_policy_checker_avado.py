@@ -65,7 +65,7 @@ def main():
 
     
     policy_type = st.text_input("Policy Type:")
-    hr_policy = st.text_area("Copy and past HR policy that you want to check:")
+    hr_policy = st.text_area("Copy and paste the HR policy that you want to check")
     sector = st.text_input("Company Sector:")
     country = st.selectbox(
     'Select your Country:',
